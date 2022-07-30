@@ -1,0 +1,99 @@
+Funciones en R
+
+Estructura de una funcion 
+
+```{r}
+Argumento (o valores de entrada):  sirven para ingresar información necesaria para realizar el procedimiento de la función. Este representa al valor que se le asigna a un parámetro en un procedimiento al llamar al procedimiento. 
+
+Cuerpo: Este es el que contiene la función principal del programa, son el conjunto de instrucciones que modifica los objetos de entrada y en ocasiones creando otros nuevos. está formado por un conjunto de instrucciones que transforman las entradas en las salidas deseadas. Vienen dados entre corchetes "{}" y se ejecutan cada vez que llamamos la función.
+
+Resultado: E el conjunto de instrucciones que se toma del cuerpo para obtener los datos finales (resultados) y mostrarlos en un dispositivo externo. La última línea del código será el valor que devolverá la función. 
+
+```
+
+Ejemplo de función
+
+```{r}
+nombre <- function(argumentos) {
+  operaciones
+}
+
+area_cuad <- function(lado1, lado2) {
+  lado1 * lado2
+}
+
+area_cuad(3,3)
+
+```
+
+Argumentos de una funcion
+
+```{r}
+Los argumentos de una función son una serie de valores (opcionales) que se pasan a la función, de modo que ciertas variables dentro de estas posean diferentes valores en cada llamada a la función.Los argumentos pueden estar vacíos y a la espera de que el usuario ingrese valores, o pueden tener valores por defecto, esto significa que, si el usuario no ingresa un valor, la función usará el valor por defecto. Los argumentos se separan por una coma dentro de "función ()". Puede ser cualquier tipo y cantidad de argumentos.
+
+```
+
+argumentos de valor 
+
+```{r}
+La información de la variable se almacenan en una dirección de memoria diferente al recibirla en la funcion, por lo tanto si el valor de esa variable cambia no afecta la variable original, solo se modifica dentro del contexto de la función.
+```
+
+
+Familia apply
+
+lappy
+
+```{r}
+La función lapply() en R está hecha para realizarle operaciones a una lista, pero igual admite otro tipo de objeto. La diferencia con la función apply() es que la función devuelve una lista. 
+```
+
+```{r}
+df = data.frame("NOMBRES" = c("Ana","Javiera","José","Juan","Miguel", "María"),
+                "LUGAR_ASISTIR" = c("Lugar1", "Lugar2", "Lugar1", "Lugar2", "Lugar1", "Lugar1"),
+                "DIAS_ASISTIDOS" = c(8,7,10,5,6,10),
+                "DIAS_TOTALES" = c(10,10,10,10,10,10))
+
+df
+
+```
+
+Uso de Lapply con funciones
+
+```{r}
+Vamos a calcular el promedio asistidos y totales
+
+lapply(df[,c(3,4)], mean)
+```
+
+
+Sapply
+
+```{r}
+La función sapply() en R está hecha para realizarle operaciones a una lista, pero igual admite otro tipo de objeto La diferencia con la función apply() es que la función devuelve un vector.
+```
+
+Uso de Sapply con funciones
+
+```{r}
+Con el ejemplo anterior Vamos a calcular el promedio asistidos y totales
+
+sapply(df[,c(3,4)], mean)
+```
+
+
+Tapply
+
+```{r}
+La función tapply() en R, le aplica una función a los datos agrupados.
+
+```
+
+Uso de Tapply con funciones
+
+```{r}
+queremos saber cuales son los días de asistencia promedio por lugar_asistir.
+
+tapply(df$DIAS_ASISTIDOS,df$LUGAR_ASISTIR, mean)
+```
+
