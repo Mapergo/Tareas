@@ -1,0 +1,60 @@
+
+```{r}
+install.packages("ggplot2")
+install.packages("readr")
+install.packages("dplyr")
+```
+
+```{r}
+library(ggplot2)
+library(readr)
+library(dplyr)
+```
+
+```{r}
+dataset_results <- read_csv("primary_results.csv")
+dataset_results
+```
+
+Filtrar todos los votos del estado de Florida
+
+```{r}
+dataset_results %>%
+  filter(state == "Florida")
+```
+
+Utilice operadores lógicos (& and |), según corresponda:
+
+```{r}
+dataset_results %>%
+  filter(candidate == "Hillary Clinton" | candidate == "Donald Trump" ) 
+```
+
+```{r}
+dataset_results %>%
+  filter(party == "Democrat" & county == "Shelby" ) 
+```
+
+```{r}
+dataset_results %>%
+  filter(state == "Alabama" & votes >= 1500 ) 
+```
+
+Utilice la función select y arrange para el siguiente filtrado:
+
+```{r}
+dataset_results %>%
+  filter(state == "Texas" & county == "Denton" ) %>%
+  select(party, candidate, votes) %>%
+  arrange(desc(votes))
+```
+
+Utilice el verbo mutate y arrange para el siguiente filtrado:
+
+```{r}
+dataset_results %>%
+  filter(party == "Republican" & candidate == "Ted Cruz" & state == "Alaska" ) %>%
+  mutate(vote_count= votes/fraction_votes) %>%
+  arrange(desc(vote_count))
+```
+
